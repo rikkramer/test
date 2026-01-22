@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Timer">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Countdown Timer</title>
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%231a1a2e' width='100' height='100' rx='20'/><text y='65' x='50' text-anchor='middle' font-size='50'>⏱</text></svg>">
+    <link rel="stylesheet" href="timer.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Timer</h1>
+        </header>
+
+        <main class="timer-main">
+            <!-- Timer Display -->
+            <div class="timer-display" id="timerDisplay">
+                <div class="timer-ring">
+                    <svg class="progress-ring" viewBox="0 0 200 200">
+                        <circle class="progress-ring-bg" cx="100" cy="100" r="90" />
+                        <circle class="progress-ring-circle" id="progressCircle" cx="100" cy="100" r="90" />
+                    </svg>
+                    <div class="timer-time" id="timerTime">00:00</div>
+                </div>
+            </div>
+
+            <!-- Time Input (shown when not running) -->
+            <div class="time-input-container" id="timeInputContainer">
+                <div class="time-input-group">
+                    <div class="time-input-wrapper">
+                        <input type="number" id="minutesInput" min="0" max="99" value="5" inputmode="numeric" pattern="[0-9]*">
+                        <label>minuten</label>
+                    </div>
+                    <span class="time-separator">:</span>
+                    <div class="time-input-wrapper">
+                        <input type="number" id="secondsInput" min="0" max="59" value="0" inputmode="numeric" pattern="[0-9]*">
+                        <label>seconden</label>
+                    </div>
+                </div>
+
+                <!-- Quick Time Presets -->
+                <div class="presets">
+                    <button class="preset-btn" data-minutes="1">1 min</button>
+                    <button class="preset-btn" data-minutes="3">3 min</button>
+                    <button class="preset-btn" data-minutes="5">5 min</button>
+                    <button class="preset-btn" data-minutes="10">10 min</button>
+                    <button class="preset-btn" data-minutes="15">15 min</button>
+                    <button class="preset-btn" data-minutes="30">30 min</button>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls">
+                <button class="control-btn secondary" id="resetBtn" disabled>
+                    <span class="btn-icon">↺</span>
+                    <span class="btn-text">Reset</span>
+                </button>
+                <button class="control-btn primary" id="startBtn">
+                    <span class="btn-icon" id="startBtnIcon">▶</span>
+                    <span class="btn-text" id="startBtnText">Start</span>
+                </button>
+            </div>
+        </main>
+
+        <!-- Alarm Modal -->
+        <div class="alarm-modal" id="alarmModal">
+            <div class="alarm-content">
+                <div class="alarm-icon">⏰</div>
+                <h2>Tijd is om!</h2>
+                <button class="alarm-dismiss-btn" id="dismissAlarmBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="timer.js"></script>
+</body>
+</html>
