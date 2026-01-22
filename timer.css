@@ -1,0 +1,411 @@
+/* CSS Variables */
+:root {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-card: #0f3460;
+    --accent: #e94560;
+    --accent-light: #ff6b6b;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.4);
+    --success: #00d9a5;
+    --ring-bg: rgba(255, 255, 255, 0.1);
+    --safe-area-top: env(safe-area-inset-top, 20px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 20px);
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    font-size: 16px;
+    height: 100%;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    min-height: 100%;
+    min-height: 100dvh;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* App Container */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-top: var(--safe-area-top);
+    padding-bottom: var(--safe-area-bottom);
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
+}
+
+/* Header */
+.app-header {
+    text-align: center;
+    padding: 1rem;
+}
+
+.app-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+/* Main Content */
+.timer-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem 2rem;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Timer Display */
+.timer-display {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-height: 300px;
+}
+
+.timer-ring {
+    position: relative;
+    width: min(280px, 70vw);
+    height: min(280px, 70vw);
+}
+
+.progress-ring {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+    fill: none;
+    stroke: var(--ring-bg);
+    stroke-width: 8;
+}
+
+.progress-ring-circle {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 565.48;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+.timer-time {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(3rem, 12vw, 4.5rem);
+    font-weight: 200;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+}
+
+/* Time Input */
+.time-input-container {
+    width: 100%;
+    padding: 1.5rem 0;
+}
+
+.time-input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.time-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.time-input-wrapper input {
+    width: 80px;
+    height: 60px;
+    background: var(--bg-card);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 1.75rem;
+    font-weight: 300;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.time-input-wrapper input:focus {
+    border-color: var(--accent);
+    background: rgba(233, 69, 96, 0.1);
+}
+
+.time-input-wrapper label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.time-separator {
+    font-size: 2rem;
+    font-weight: 200;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+/* Presets */
+.presets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.preset-btn {
+    background: var(--bg-card);
+    border: none;
+    border-radius: 20px;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.625rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.preset-btn:hover,
+.preset-btn:active {
+    background: var(--accent);
+    transform: scale(1.05);
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    max-width: 320px;
+}
+
+.control-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.control-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.control-btn.primary {
+    background: var(--accent);
+    color: var(--text-primary);
+}
+
+.control-btn.primary:hover:not(:disabled),
+.control-btn.primary:active:not(:disabled) {
+    background: var(--accent-light);
+    transform: scale(1.02);
+}
+
+.control-btn.secondary {
+    background: var(--bg-card);
+    color: var(--text-primary);
+}
+
+.control-btn.secondary:hover:not(:disabled),
+.control-btn.secondary:active:not(:disabled) {
+    background: rgba(15, 52, 96, 0.8);
+}
+
+.btn-icon {
+    font-size: 1.25rem;
+}
+
+/* Running State */
+.app-container.running .time-input-container {
+    display: none;
+}
+
+.app-container:not(.running) .timer-display {
+    opacity: 0.6;
+}
+
+.app-container.running .timer-display {
+    opacity: 1;
+}
+
+/* Paused State */
+.app-container.paused .timer-time {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Alarm Modal */
+.alarm-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.alarm-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.alarm-content {
+    text-align: center;
+    animation: alarmBounce 0.5s ease;
+}
+
+@keyframes alarmBounce {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.alarm-icon {
+    font-size: 5rem;
+    animation: shake 0.5s ease-in-out infinite;
+}
+
+@keyframes shake {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+.alarm-content h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 1rem 0 2rem;
+}
+
+.alarm-dismiss-btn {
+    background: var(--success);
+    color: var(--bg-primary);
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 3rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.alarm-dismiss-btn:hover,
+.alarm-dismiss-btn:active {
+    transform: scale(1.05);
+}
+
+/* Finished State */
+.app-container.finished .progress-ring-circle {
+    stroke: var(--success);
+}
+
+/* Media Queries for larger screens */
+@media (min-width: 768px) {
+    .timer-ring {
+        width: 320px;
+        height: 320px;
+    }
+
+    .time-input-wrapper input {
+        width: 100px;
+        height: 70px;
+        font-size: 2rem;
+    }
+
+    .controls {
+        max-width: 400px;
+    }
+}
+
+/* Landscape mode on phones */
+@media (max-height: 500px) and (orientation: landscape) {
+    .timer-main {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 0.5rem 1rem;
+    }
+
+    .timer-display {
+        flex: 0 0 40%;
+        max-height: none;
+    }
+
+    .timer-ring {
+        width: min(200px, 40vh);
+        height: min(200px, 40vh);
+    }
+
+    .time-input-container {
+        flex: 0 0 55%;
+        padding: 0.5rem;
+    }
+
+    .controls {
+        flex: 0 0 100%;
+        max-width: none;
+        padding-top: 0.5rem;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
